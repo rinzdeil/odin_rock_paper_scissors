@@ -1,8 +1,15 @@
 // take user answer, set to lowercase
-let userAnswer = prompt(`Choose between rock paper and scissors:`);
-userAnswer = userAnswer.toLowerCase();
+let getUserAnswer = () =>
+  prompt(`Choose between rock paper and scissors:`).toLowerCase();
 
+// store userAnswer in variable
+let userAnswer = getUserAnswer();
+
+// set initial score to 0
 let score = 0;
+
+// set initial tries to 0
+let tries = 0;
 
 const options = ["rock", "paper", "scissors"];
 
@@ -23,7 +30,7 @@ function validateAnswer() {
   if (!options.includes(userAnswer)) {
     console.log(`${userAnswer} is an invalid answer`);
   } else {
-    console.log(`user chose: ${userAnswer}`);
+    console.log(`User chose: ${userAnswer}`);
   }
 }
 
@@ -44,15 +51,13 @@ function whoWins() {
   } else {
     switch (userAnswer) {
       case "rock":
-        computerChoice === "paper" ? console.log("WIN") : console.log("LOSE");
+        computerChoice === "paper" ? isWin() : isLose();
         break;
       case "paper":
-        computerChoice === "scissors"
-          ? console.log("WIN")
-          : console.log("LOSE");
+        computerChoice === "scissors" ? isWin() : isLose();
         break;
       case "scissors":
-        computerChoice === "rock" ? console.log("WIN") : console.log("LOSE");
+        computerChoice === "rock" ? isWin() : isLose();
         break;
       default:
         console.log("Choose correct answer from options");
@@ -62,4 +67,6 @@ function whoWins() {
 
 choose();
 validateAnswer();
-whoWins();
+while (tries != 5) {
+  whoWins();
+}
