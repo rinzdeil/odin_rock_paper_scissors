@@ -2,18 +2,20 @@
 let userAnswer = prompt(`Choose between rock paper and scissors:`);
 userAnswer = userAnswer.toLowerCase();
 
+let score = 0;
+
 const options = ["rock", "paper", "scissors"];
 
-// generate random choice
-let choice;
+// generate random computerChoice
+let computerChoice;
 function choose() {
   let num = Math.floor(Math.random() * 3);
   num === 0
-    ? (choice = "rock")
+    ? (computerChoice = "rock")
     : num === 1
-      ? (choice = "paper")
-      : (choice = "scissors");
-  console.log(`Computer chose: ${choice}`);
+      ? (computerChoice = "paper")
+      : (computerChoice = "scissors");
+  console.log(`Computer chose: ${computerChoice}`);
 }
 
 // Check if userAnswer is valid
@@ -25,28 +27,32 @@ function validateAnswer() {
   }
 }
 
-function isDraw() {
-  if (userAnswer === choice) {
-    console.log("It's a draw!");
-    return;
-  }
+function isWin() {
+  score += 1;
+  console.log("You WON!");
+  console.log(`Score: ${score}`);
+}
+
+function isLose() {
+  console.log("You LOST");
+  console.log(`Score: ${score}`);
 }
 
 function whoWins() {
-  isDraw();
-
-  if (userAnswer === choice) {
+  if (userAnswer === computerChoice) {
     console.log("Its a draw!");
   } else {
     switch (userAnswer) {
       case "rock":
-        choice === "paper" ? console.log("WIN") : console.log("LOSE");
+        computerChoice === "paper" ? console.log("WIN") : console.log("LOSE");
         break;
       case "paper":
-        choice === "scissors" ? console.log("WIN") : console.log("LOSE");
+        computerChoice === "scissors"
+          ? console.log("WIN")
+          : console.log("LOSE");
         break;
       case "scissors":
-        choice === "rock" ? console.log("WIN") : console.log("LOSE");
+        computerChoice === "rock" ? console.log("WIN") : console.log("LOSE");
         break;
       default:
         console.log("Choose correct answer from options");
