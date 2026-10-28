@@ -23,21 +23,27 @@ function getUserAnswer() {
 // generate random computerChoice
 function getComputerChoice() {
   let num = Math.floor(Math.random() * 3);
-  if (num === 0) return "rock";
-  else if (num === 1) return "paper";
-  else if (num === 2) return "scissors";
-  console.log(computerChoice);
+  if (num === 0) computerChoice = "rock";
+  else if (num === 1) computerChoice = "paper";
+  else if (num === 2) computerChoice = "scissors";
+  console.log(`Computer chose: ${computerChoice}`);
+  return computerChoice;
 }
 
-function play() {
-  getComputerChoice();
-  validateAnswer();
-  compare();
-  console.log(score);
+function isWin(condition) {
+  if (condition) {
+    score += 1;
+    console.log(`${userChoice} wins over ${computerChoice}. You WON!`);
+    return;
+  } else {
+    console.log("You LOST");
+    return;
+  }
 }
-function compare() {
-  // console.log(`User Chose: ${userChoice}`);
-  // console.log(`Computer Chose: ${computerChoice}`);
+
+function whoWins() {
+  userChoice = getUserAnswer();
+  computerChoice = getComputerChoice();
 
   if (computerChoice === userChoice) {
     console.log("Its a draw!");
@@ -58,13 +64,10 @@ function compare() {
   }
 }
 
-function isWin(condition) {
-  if (condition == true) {
-    score += 1;
-    console.log("You WON!");
-  } else {
-    console.log("You LOST");
-  }
+function play() {
+  // getComputerChoice();
+  // validateAnswer();
+  whoWins();
   console.log(`Score: ${score}`);
 }
 
