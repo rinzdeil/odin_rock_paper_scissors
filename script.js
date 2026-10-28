@@ -7,14 +7,9 @@ let tries = 5;
 let computerChoice;
 let userChoice;
 
-// take user answer, set to lowercase
+// take user answer, set to lowercase, validate
 function getUserAnswer() {
-  return prompt(`Choose between rock paper and scissors:`).toLowerCase();
-}
-
-// Check if getUserAnswer is valid
-function validateAnswer() {
-  let userChoice = getUserAnswer();
+  answer = prompt(`Choose between rock paper and scissors:`).toLowerCase();
   if (!options.includes(userChoice)) {
     console.log(`${userChoice} is an invalid answer`);
   } else {
