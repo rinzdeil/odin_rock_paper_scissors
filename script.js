@@ -4,8 +4,8 @@ const options = ["rock", "paper", "scissors"];
 let score = 0;
 let tries = 5;
 
-let computerChoice = getComputerChoice();
-let userChoice = getUserAnswer();
+let computerChoice;
+let userChoice;
 
 // take user answer, set to lowercase
 function getUserAnswer() {
