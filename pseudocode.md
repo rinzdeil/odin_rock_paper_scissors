@@ -13,6 +13,16 @@
   - scissors beats paper (Scissor > Paper)
   - rock beats scissors (Rock < Scissor)
 
+- set score to 0
+- set how many tries = 5
+- make play function
+- get user input. set to lowercase
+- let computer choose RPS
+- compare user choice and computer choice
+- if win show Win, score + 1, tries + 1
+- if lose show Lose, tries + 1
+- if tries <= 5, execute play again
+
 ```javascript
 switch
 case Scissor
