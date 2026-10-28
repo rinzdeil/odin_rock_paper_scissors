@@ -51,13 +51,13 @@ function whoWins() {
   } else {
     switch (userChoice) {
       case "rock":
-        computerChoice === "paper" ? isWin(true) : isWin(false);
-        break;
-      case "paper":
         computerChoice === "scissors" ? isWin(true) : isWin(false);
         break;
-      case "scissors":
+      case "paper":
         computerChoice === "rock" ? isWin(true) : isWin(false);
+        break;
+      case "scissors":
+        computerChoice === "paper" ? isWin(true) : isWin(false);
         break;
       default:
         console.log("Choose correct answer from options");
@@ -67,13 +67,14 @@ function whoWins() {
 }
 
 function play() {
-  // getComputerChoice();
-  // validateAnswer();
   whoWins();
   console.log(`Score: ${score}`);
 }
 
 // if tries <= 5 execute whoWins, i++
-for (let i = 0; i <= tries; i++) {
+for (let i = 0; i < tries; i++) {
   play();
+  console.log(`${tries - (i + 1)} tries left`);
 }
+
+console.log(`Game Over! Final Score: ${score}`);
