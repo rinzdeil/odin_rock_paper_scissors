@@ -47,6 +47,7 @@ function whoWins() {
 
   if (computerChoice === userChoice) {
     console.log("Its a draw!");
+    return;
   } else {
     switch (userChoice) {
       case "rock":
@@ -62,6 +63,7 @@ function whoWins() {
         console.log("Choose correct answer from options");
     }
   }
+  return;
 }
 
 function play() {
