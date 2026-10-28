@@ -1,63 +1,59 @@
-// take user answer, set to lowercase
-let getUserAnswer = () =>
-  prompt(`Choose between rock paper and scissors:`).toLowerCase();
-
-// store userAnswer in variable
-let userAnswer = getUserAnswer();
-
 // set initial score to 0
-let score = 0;
-
-// set initial tries to 0
-let tries = 0;
-
+// set initial tries to 5
 const options = ["rock", "paper", "scissors"];
+let score = 0;
+let tries = 5;
 
-// generate random computerChoice
-let computerChoice;
-function choose() {
-  let num = Math.floor(Math.random() * 3);
-  num === 0
-    ? (computerChoice = "rock")
-    : num === 1
-      ? (computerChoice = "paper")
-      : (computerChoice = "scissors");
-  console.log(`Computer chose: ${computerChoice}`);
+let computerChoice = getComputerChoice();
+let userChoice = getUserAnswer();
+
+// take user answer, set to lowercase
+function getUserAnswer() {
+  return prompt(`Choose between rock paper and scissors:`).toLowerCase();
 }
 
-// Check if userAnswer is valid
+// Check if getUserAnswer is valid
 function validateAnswer() {
-  if (!options.includes(userAnswer)) {
-    console.log(`${userAnswer} is an invalid answer`);
+  let userChoice = getUserAnswer();
+  if (!options.includes(userChoice)) {
+    console.log(`${userChoice} is an invalid answer`);
   } else {
-    console.log(`User chose: ${userAnswer}`);
+    console.log(`User chose: ${userChoice}`);
+    return userChoice;
   }
 }
 
-function isWin() {
-  score += 1;
-  console.log("You WON!");
-  console.log(`Score: ${score}`);
+// generate random computerChoice
+function getComputerChoice() {
+  let num = Math.floor(Math.random() * 3);
+  if (num === 0) return "rock";
+  else if (num === 1) return "paper";
+  else if (num === 2) return "scissors";
+  console.log(computerChoice);
 }
 
-function isLose() {
-  console.log("You LOST");
-  console.log(`Score: ${score}`);
+function play() {
+  getComputerChoice();
+  validateAnswer();
+  compare();
+  console.log(score);
 }
+function compare() {
+  // console.log(`User Chose: ${userChoice}`);
+  // console.log(`Computer Chose: ${computerChoice}`);
 
-function whoWins() {
-  if (userAnswer === computerChoice) {
+  if (computerChoice === userChoice) {
     console.log("Its a draw!");
   } else {
-    switch (userAnswer) {
+    switch (userChoice) {
       case "rock":
-        computerChoice === "paper" ? isWin() : isLose();
+        computerChoice === "paper" ? isWin(true) : isWin(false);
         break;
       case "paper":
-        computerChoice === "scissors" ? isWin() : isLose();
+        computerChoice === "scissors" ? isWin(true) : isWin(false);
         break;
       case "scissors":
-        computerChoice === "rock" ? isWin() : isLose();
+        computerChoice === "rock" ? isWin(true) : isWin(false);
         break;
       default:
         console.log("Choose correct answer from options");
@@ -65,8 +61,17 @@ function whoWins() {
   }
 }
 
-choose();
-validateAnswer();
-while (tries != 5) {
-  whoWins();
+function isWin(condition) {
+  if (condition == true) {
+    score += 1;
+    console.log("You WON!");
+  } else {
+    console.log("You LOST");
+  }
+  console.log(`Score: ${score}`);
+}
+
+// if tries <= 5 execute whoWins, i++
+for (let i = 0; i <= tries; i++) {
+  play();
 }
