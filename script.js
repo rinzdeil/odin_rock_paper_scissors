@@ -1,8 +1,9 @@
 // set initial score to 0
-// set initial tries to 5
+// set initial rounds to 5
 const options = ["rock", "paper", "scissors"];
-let score = 0;
-let tries = 5;
+let scoreUser = 0;
+let scoreComputer = 0;
+let rounds = 5;
 
 let computerChoice;
 let userChoice;
@@ -32,10 +33,11 @@ function getComputerChoice() {
 
 function isWin(condition) {
   if (condition) {
-    score += 1;
+    scoreUser += 1;
     console.log(`${userChoice} wins over ${computerChoice}. You WON!`);
     return;
   } else {
+    scoreComputer += 1;
     console.log("You LOST");
     return;
   }
@@ -68,13 +70,27 @@ function whoWins() {
 
 function play() {
   whoWins();
-  console.log(`Score: ${score}`);
+  console.log(`User Score: ${scoreUser} | Computer Score: ${scoreComputer}`);
 }
 
-// if tries <= 5 execute whoWins, i++
-for (let i = 0; i < tries; i++) {
+// if rounds <= 5 execute whoWins, i++
+for (let i = 0; i < rounds; i++) {
   play();
-  console.log(`${tries - (i + 1)} tries left`);
+  console.log(`${rounds - (i + 1)} rounds left`);
 }
 
-console.log(`Game Over! Final Score: ${score}`);
+if (scoreComputer == scoreUser) {
+  console.log(
+    `Its a DRAW! User Score: ${scoreUser} | Computer Score: ${scoreComputer}`,
+  );
+} else if (scoreUser > scoreComputer) {
+  console.log(
+    `User WINS! User Score: ${scoreUser} | Computer Score: ${scoreComputer}`,
+  );
+} else if (scoreUser < scoreComputer) {
+  console.log(
+    `Computer WINS! User Score: ${scoreUser} | Computer Score: ${scoreComputer}`,
+  );
+} else {
+  console.log(`Game Over!`);
+}
