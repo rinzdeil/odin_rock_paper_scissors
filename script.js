@@ -9,9 +9,11 @@ let userChoice;
 
 // take user answer, set to lowercase, validate
 function getUserAnswer() {
-  answer = prompt(`Choose between rock paper and scissors:`).toLowerCase();
+  userChoice = prompt(`Choose between rock paper and scissors:`);
+  userChoice.toLowerCase();
   if (!options.includes(userChoice)) {
     console.log(`${userChoice} is an invalid answer`);
+    return;
   } else {
     console.log(`User chose: ${userChoice}`);
     return userChoice;
